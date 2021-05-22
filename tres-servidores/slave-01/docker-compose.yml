@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  redis-slave:
+    image: redis:6.0-alpine
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - ./conf:/etc/redis/
+    ports:
+      - 6379:6379
+
+  sentinel-slave:
+    image: redis:6.0-alpine
+    command: redis-sentinel /etc/redis/sentinel.conf
+    volumes:
+      - ./conf:/etc/redis/
+    ports:
+      - 26379:26379
